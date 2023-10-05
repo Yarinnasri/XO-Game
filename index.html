@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Tic-Tac-Toe" />
+    <title>Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Menu -->
+    <div id="menu">
+      <h1>Tic-Tac-Toe</h1>
+
+      <div id="settings">
+        <p>What is the starter shape?</p>
+        <div>
+          <input
+            type="radio"
+            name="shape"
+            value="random"
+            id="shape-random"
+            checked
+          />
+          Random
+        </div>
+        <div>
+          <input type="radio" name="shape" value="X" id="shape-X" />
+          <span class="X">X</span>
+        </div>
+        <div>
+          <input type="radio" name="shape" value="O" id="shape-O" />
+          <span class="O">O</span>
+        </div>
+
+        <p>What is the max rounds?</p>
+        <div>
+          <input type="radio" name="rounds" value="3" id="3-rounds" checked />
+          3
+        </div>
+        <div>
+          <input type="radio" name="rounds" value="5" id="5-rounds" />
+          5
+        </div>
+        <div>
+          <input type="radio" name="rounds" value="7" id="7-rounds" />
+          7
+        </div>
+      </div>
+
+      <button id="play-button">Play</button>
+    </div>
+
+    <!-- Game -->
+    <div id="game">
+      <div id="rounds-played"></div>
+      <div id="score-board"></div>
+
+      <div id="cells-container"></div>
+      <!-- Grid will be injeced here -->
+
+      <h2 id="info"></h2>
+
+      <button id="next-round-button" class="end-button">Next Round</button>
+      <button id="new-game-button" class="end-button">New Game</button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
