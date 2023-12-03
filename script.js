@@ -1,4 +1,12 @@
 const infoDisplay = document.getElementById("info");
+const menuHtml = document.getElementById("menu");
+const gameHtml = document.getElementById("game");
+const cellsContainer = document.getElementById("cells-container");
+const scoreBoardHtml = document.getElementById("score-board");
+const roundsPlayedHtml = document.getElementById("rounds-played");
+const newGameBtn = document.getElementById("new-game-button");
+const nextRoundBtn = document.getElementById("next-round-button");
+const playBtn = document.getElementById("play-button");
 
 let gameActive;
 let currentPlayer;
@@ -81,9 +89,8 @@ function setPlayerTurn() {
 
 function startGame() {
   //Creating the board
-  document.getElementById("menu").style.display = "none";
-  document.getElementById("game").style.display = "flex";
-  let cellsContainer = document.getElementById("cells-container");
+  menuHtml.style.display = "none";
+  gameHtml.style.display = "flex";
   for (let i = 0; i < 9; i++) {
     const newCell = document.createElement("div");
     newCell.setAttribute("data-cell-index", `${i}`);
@@ -96,9 +103,7 @@ function startGame() {
   oTotalWins = 0;
   roundsPlayed = 0;
   setGameLength();
-  document.getElementById(
-    "score-board"
-  ).innerHTML = `<p><span class="O">O</span> Score: ${oTotalWins} </p>
+  scoreBoardHtml.innerHTML = `<p><span class="O">O</span> Score: ${oTotalWins} </p>
   <p><span class="X">X</span> Score: ${xTotalWins}</p>`;
   newRound();
 }
@@ -118,7 +123,7 @@ function newRound() {
   document.querySelectorAll(".cell").forEach((cell) => (cell.innerHTML = ""));
 
   roundsPlayed++;
-  document.getElementById("rounds-played").innerHTML = `Round ${roundsPlayed}`;
+  roundsPlayedHtml.innerHTML = `Round ${roundsPlayed}`;
   document.querySelectorAll(".end-button").forEach((btn) => {
     btn.style.display = "none";
   });
@@ -127,9 +132,9 @@ function newRound() {
 }
 
 function switchToMenu() {
-  document.getElementById("game").style.display = "none";
-  document.getElementById("menu").style.display = "flex";
-  document.getElementById("cells-container").innerHTML = "";
+  gameHtml.style.display = "none";
+  menuHtml.style.display = "flex";
+  cellsContainer.innerHTML = "";
 }
 
 //Check if there is a valid win/draw
@@ -156,9 +161,9 @@ function resultValidation() {
       Math.ceil(gameLength / 2) == oTotalWins
     ) {
       infoDisplay.innerHTML = grandWinningMessage();
-      document.getElementById("new-game-button").style.display = "block";
+      newGameBtn.style.display = "block";
     } else {
-      document.getElementById("next-round-button").style.display = "block";
+      nextRoundBtn.style.display = "block";
     }
     gameActive = false;
     currentPlayer = "";
@@ -172,9 +177,7 @@ function resultValidation() {
     } else {
       oTotalWins++;
     }
-    document.getElementById(
-      "score-board"
-    ).innerHTML = `<p><span class="O">O</span> Score: ${oTotalWins} </p>
+    scoreBoardHtml.innerHTML = `<p><span class="O">O</span> Score: ${oTotalWins} </p>
     <p><span class="X">X</span> Score: ${xTotalWins}</p>`;
     roundOver();
     return;
@@ -215,10 +218,6 @@ function cellClick(clickedCellEvent) {
 }
 
 //Event Listeners
-document.getElementById("play-button").addEventListener("click", startGame);
-document
-  .getElementById("next-round-button")
-  .addEventListener("click", newRound);
-document
-  .getElementById("new-game-button")
-  .addEventListener("click", switchToMenu);
+playBtn.addEventListener("click", startGame);
+nextRoundBtn.addEventListener("click", newRound);
+newGameBtn.addEventListener("click", switchToMenu);
